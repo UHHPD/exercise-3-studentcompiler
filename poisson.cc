@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-
+#include <cmath>
 
 double poisson(double mu, int k) {
     double p1 = pow(mu, k);
