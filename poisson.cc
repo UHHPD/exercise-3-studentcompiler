@@ -39,6 +39,6 @@ int main() {
         fout1 << k << " " << zaehler[k] << "\n";
         double poissonDistr = N * poisson(mean,k);
         fout2 << k << " " << zaehler[k] << " " << poissonDistr << "\n";
-        cout << k << ":" << zaehler[k] << " " << poissonDistr << endl;
+        //cout << k << ":" << zaehler[k] << " " << poissonDistr << endl;
     }
 }
