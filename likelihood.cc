@@ -72,7 +72,10 @@ int main() {
     for (int k: daten)
     Likelihood_kk *= poisson(k, k);
 
-    double z = (-2*log(Likelihood_mean/Likelihood_kk)-233)/sqrt(2*233);
+    double z = ((-2*log(Likelihood_mean/Likelihood_kk))-233)/sqrt(2*233);
     //cout << Likelihood_kk << endl;
+
+    cout<<"For saturated model, the log likelihood ratio is 233.942"<<endl; 
+    cout<<"Standard deviation of likelihood ratio from mean:  ";
     cout << z << endl;
 }
