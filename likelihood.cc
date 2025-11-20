@@ -21,7 +21,7 @@ int main() {
     vector<int> daten;
     double mean = 3.11538;
     double Likelihood_mean = 1;
-    double Likelihood_kk = 1;
+    double Likelihood_ratio= 1;
     vector<double> mu;
 
     ifstream fin("datensumme.txt");
@@ -70,12 +70,9 @@ int main() {
     fout3.close();
 
     for (int k: daten)
-    Likelihood_kk *= poisson(k, k);
+    Likelihood_ratio *= poisson(mean,k)/poisson(k, k);
 
-    double z = ((-2*log(Likelihood_mean/Likelihood_kk))-233)/sqrt(2*233);
-    //cout << Likelihood_kk << endl;
-
-    cout<<"For saturated model, the log likelihood ratio is 233.942"<<endl; 
-    cout<<"Standard deviation of likelihood ratio from mean:  ";
-    cout << z << endl;
+    cout << "the likelihood ratio Λ " << -2*log(Likelihood_ratio) << endl;
+    double z = (-2*log(Likelihood_ratio)-233)/sqrt(2*233);
+    cout << "the relative deviation " << z << endl;
 }
