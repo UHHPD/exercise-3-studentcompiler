@@ -67,10 +67,10 @@ int main() {
         {
             saturatedModel *= poisson(l, k);
         }
-        cout << "for k = " << l << " -> the  likelihood ratio Λ = " << -2*log(Likelihood_mean/saturatedModel) << endl;
+        //cout << "for k = " << l << " -> the  likelihood ratio Λ = " << -2*log(Likelihood_mean/saturatedModel) << endl;
         //cout << l << " " << saturatedModel << endl;
         double z = (-2*log(Likelihood_mean/saturatedModel) -233)/sqrt(2*233);
-        cout << "its z = " << z << endl;
+        cout << "z = " << z << endl;
         //fout4 << z << endl;
         }
     }   
