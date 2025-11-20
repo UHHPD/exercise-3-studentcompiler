@@ -61,7 +61,7 @@ int main() {
 
         double nll = -2*log(Likelihood_mu);
         double delta_nll = 2*log(Likelihood_mean) - 2*log(Likelihood_mu);
-        double z = (-2*log(Likelihood_mean/saturatedModel) - 233)/sqrt(2*233);
+        double z = (-2*log(Likelihood_mu/saturatedModel) - 233)/sqrt(2*233);
 
         fout1 << j << " " << Likelihood_mu << endl;
         fout2 << j << " " << nll << endl;
