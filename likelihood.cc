@@ -20,7 +20,7 @@ int main() {
     int i = 0;
     vector<int> daten;
     double mean = 3.11538;
-    double Likelihood_mean = 1.0;
+    double Likelihood_mean = 1;
     vector<double> mu;
 
     ifstream fin("datensumme.txt");
@@ -35,11 +35,11 @@ int main() {
     Likelihood_mean *= poisson(mean, k);
     cout << "the likelihood for μ = 3.11538 is " << Likelihood_mean << endl;
 
-    double LM = 1.0;
+    double LM = 1;
     double stepsize = 0.1;
-    double mu_max = 6.0;
+    double mu_max = 6;
 
-    for (int i = 0.0 ; i < 61.0; i++){
+    for (int i = 0 ; i <= 60; i++){
         double m = i * stepsize;
         mu.push_back(m);
     }
@@ -50,7 +50,7 @@ int main() {
 
     for (double j: mu)
     {
-        double Likelihood_mu = 1.0;
+        double Likelihood_mu = 1;
         for (int k: daten){
         Likelihood_mu *= poisson(j, k);
     }
@@ -58,6 +58,5 @@ int main() {
     fout1 << j << " " << Likelihood_mu << endl;
     fout2 << j << " " << -2*log(Likelihood_mu) << endl;
     fout3 << j << " " << -2*log(Likelihood_mu) + 2*log(Likelihood_mean)<< endl;
-    
     }
 }
