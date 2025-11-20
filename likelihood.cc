@@ -47,16 +47,34 @@ int main() {
     ofstream fout1("likelihood.txt");
     ofstream fout2("nll.txt");
     ofstream fout3("deltanll.txt");
+    ofstream fout4("rel_deviation.txt");
 
     for (double j: mu)
     {
-        double Likelihood_mu = 1;
-        for (int k: daten){
-        Likelihood_mu *= poisson(j, k);
-    }
-    //cout << j << " " << Likelihood_mu << endl;
-    fout1 << j << " " << Likelihood_mu << endl;
-    fout2 << j << " " << -2*log(Likelihood_mu) << endl;
-    fout3 << j << " " << -2*log(Likelihood_mu) + 2*log(Likelihood_mean)<< endl;
-    }
+        double Likelihood_mu = 1.0;
+        for (int k: daten)
+        {
+            Likelihood_mu *= poisson(j, k);
+        }
+        //cout << j << " " << Likelihood_mu << endl;
+        fout1 << j << " " << Likelihood_mu << endl;
+        fout2 << j << " " << -2*log(Likelihood_mu) << endl;
+        fout3 << j << " " << -2*log(Likelihood_mu) + 2*log(Likelihood_mean)<< endl;
+        
+        for (double l: daten){
+        double saturatedModel = 1;
+        for (double k: daten)
+        {
+            saturatedModel *= poisson(l, k);
+        }
+        cout << "for k = " << l << " -> the  likelihood ratio Λ = " << -2*log(Likelihood_mean/saturatedModel) << endl;
+        //cout << l << " " << saturatedModel << endl;
+        double z = (-2*log(Likelihood_mean/saturatedModel) -233)/sqrt(2*233);
+        cout << "its z = " << z << endl;
+        //fout4 << z << endl;
+        }
+    }   
+    fout1.close();
+    fout2.close();
+    fout3.close();
 }
