@@ -21,6 +21,7 @@ int main() {
     vector<int> daten;
     double mean = 3.11538;
     double Likelihood_mean = 1;
+    double Likelihood_kk = 1;
     vector<double> mu;
 
     ifstream fin("datensumme.txt");
@@ -51,25 +52,27 @@ int main() {
     for (double j: mu)
     {
         double Likelihood_mu = 1;
-        double saturatedModel = 1;
         for (int k: daten)
         {
             Likelihood_mu *= poisson(j, k);
-            saturatedModel *= poisson(k, k);
         }
         //cout << j << " " << Likelihood_mu << endl;
 
         double nll = -2*log(Likelihood_mu);
         double delta_nll = 2*log(Likelihood_mean) - 2*log(Likelihood_mu);
-        double z = (-2*log(Likelihood_mu/saturatedModel) - 233)/sqrt(2*233);
-
         fout1 << j << " " << Likelihood_mu << endl;
         fout2 << j << " " << nll << endl;
         fout3 << j << " " << delta_nll << endl;
-        cout << "relative deviation of likelihood ratio from the mean " << z << endl;
         
-    }  
+    }
     fout1.close();
     fout2.close();
     fout3.close();
+
+    for (int k: daten)
+    Likelihood_kk *= poisson(k, k);
+
+    double z = (-2*log(Likelihood_mean/Likelihood_kk)-233)/sqrt(2*233);
+    //cout << Likelihood_kk << endl;
+    cout << z << endl;
 }
